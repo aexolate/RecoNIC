@@ -1,0 +1,1092 @@
+{
+  "Top": "mmult",
+  "RtlTop": "mmult",
+  "RtlPrefix": "",
+  "RtlSubPrefix": "mmult_",
+  "SourceLanguage": "cpp",
+  "HostMachineBits": "64",
+  "FunctionProtocol": "ap_ctrl_hs",
+  "ResetStyle": "control",
+  "Target": {
+    "Family": "virtexuplus",
+    "Device": "xcvu9p",
+    "Package": "-flga2104",
+    "Speed": "-2L-e",
+    "Triple": "fpga64-xilinx-none"
+  },
+  "Args": {
+    "work_id_out_stream": {
+      "index": "0",
+      "direction": "out",
+      "srcType": "stream<int, 0>&",
+      "srcSize": "32",
+      "hwRefs": [{
+          "type": "interface",
+          "interface": "work_id_out_stream",
+          "name": "",
+          "usage": "data",
+          "direction": "out"
+        }]
+    },
+    "a": {
+      "index": "1",
+      "direction": "in",
+      "srcType": "int const *",
+      "srcSize": "32",
+      "hwRefs": [
+        {
+          "type": "interface",
+          "interface": "m_axi_systolic",
+          "name": "",
+          "usage": "data",
+          "direction": "in"
+        },
+        {
+          "type": "port",
+          "interface": "a",
+          "name": "a",
+          "usage": "address",
+          "direction": "in"
+        }
+      ]
+    },
+    "b": {
+      "index": "2",
+      "direction": "in",
+      "srcType": "int const *",
+      "srcSize": "32",
+      "hwRefs": [
+        {
+          "type": "interface",
+          "interface": "m_axi_systolic",
+          "name": "",
+          "usage": "data",
+          "direction": "in"
+        },
+        {
+          "type": "port",
+          "interface": "b",
+          "name": "b",
+          "usage": "address",
+          "direction": "in"
+        }
+      ]
+    },
+    "c": {
+      "index": "3",
+      "direction": "in",
+      "srcType": "int*",
+      "srcSize": "32",
+      "hwRefs": [
+        {
+          "type": "interface",
+          "interface": "m_axi_systolic",
+          "name": "",
+          "usage": "data",
+          "direction": "in"
+        },
+        {
+          "type": "port",
+          "interface": "c",
+          "name": "c",
+          "usage": "address",
+          "direction": "in"
+        }
+      ]
+    },
+    "a_row": {
+      "index": "4",
+      "direction": "in",
+      "srcType": "int",
+      "srcSize": "32",
+      "hwRefs": [
+        {
+          "type": "port",
+          "interface": "a_row",
+          "name": "a_row",
+          "usage": "data",
+          "direction": "in"
+        },
+        {
+          "type": "port",
+          "interface": "a_row_ap_vld",
+          "name": "a_row_ap_vld",
+          "usage": "control",
+          "direction": "in"
+        }
+      ]
+    },
+    "a_col": {
+      "index": "5",
+      "direction": "in",
+      "srcType": "int",
+      "srcSize": "32",
+      "hwRefs": [
+        {
+          "type": "port",
+          "interface": "a_col",
+          "name": "a_col",
+          "usage": "data",
+          "direction": "in"
+        },
+        {
+          "type": "port",
+          "interface": "a_col_ap_vld",
+          "name": "a_col_ap_vld",
+          "usage": "control",
+          "direction": "in"
+        }
+      ]
+    },
+    "b_col": {
+      "index": "6",
+      "direction": "in",
+      "srcType": "int",
+      "srcSize": "32",
+      "hwRefs": [
+        {
+          "type": "port",
+          "interface": "b_col",
+          "name": "b_col",
+          "usage": "data",
+          "direction": "in"
+        },
+        {
+          "type": "port",
+          "interface": "b_col_ap_vld",
+          "name": "b_col_ap_vld",
+          "usage": "control",
+          "direction": "in"
+        }
+      ]
+    },
+    "work_id": {
+      "index": "7",
+      "direction": "in",
+      "srcType": "int",
+      "srcSize": "32",
+      "hwRefs": [
+        {
+          "type": "port",
+          "interface": "work_id",
+          "name": "work_id",
+          "usage": "data",
+          "direction": "in"
+        },
+        {
+          "type": "port",
+          "interface": "work_id_ap_vld",
+          "name": "work_id_ap_vld",
+          "usage": "control",
+          "direction": "in"
+        }
+      ]
+    }
+  },
+  "HlsSolution": {
+    "FlowTarget": "vivado",
+    "ConfigTcl": [
+      "config_interface -m_axi_alignment_byte_size=64",
+      "config_interface -m_axi_max_widen_bitwidth=512"
+    ],
+    "DirectiveTcl": ["set_directive_top mmult -name mmult"],
+    "ProfileOption": "0",
+    "ProfileType": "none",
+    "KernelName": "mmult"
+  },
+  "ClockInfo": {
+    "ClockName": "ap_clk",
+    "ClockPeriod": "4",
+    "Uncertainty": "1.08",
+    "IsCombinational": "0",
+    "II": "824",
+    "Latency": "823"
+  },
+  "Xdc": {"OocClocks": ["create_clock -name ap_clk -period 4.000 [get_ports ap_clk]"]},
+  "Ipx": {
+    "Vendor": "xilinx.com",
+    "Library": "hls",
+    "Name": "mmult",
+    "Version": "1.0",
+    "DisplayName": "Mmult",
+    "Revision": "",
+    "Description": "An IP generated by Vitis HLS",
+    "Taxonomy": "\/VITIS_HLS_IP",
+    "AutoFamilySupport": "",
+    "ZipFile": "xilinx_com_hls_mmult_1_0.zip"
+  },
+  "Files": {
+    "CSource": [
+      "..\/..\/.\/mmult.cpp",
+      "..\/..\/mmult.cpp"
+    ],
+    "Vhdl": [
+      "impl\/vhdl\/mmult_flow_control_loop_pipe_sequential_init.vhd",
+      "impl\/vhdl\/mmult_localA_RAM_AUTO_1R1W.vhd",
+      "impl\/vhdl\/mmult_mmult_Pipeline_1.vhd",
+      "impl\/vhdl\/mmult_mmult_Pipeline_2.vhd",
+      "impl\/vhdl\/mmult_mmult_Pipeline_4.vhd",
+      "impl\/vhdl\/mmult_mmult_Pipeline_systolic1.vhd",
+      "impl\/vhdl\/mmult_mul_32s_32s_32_2_1.vhd",
+      "impl\/vhdl\/mmult_mux_164_32_1_1.vhd",
+      "impl\/vhdl\/mmult_systolic_m_axi.vhd",
+      "impl\/vhdl\/mmult.vhd"
+    ],
+    "Verilog": [
+      "impl\/verilog\/mmult_flow_control_loop_pipe_sequential_init.v",
+      "impl\/verilog\/mmult_localA_RAM_AUTO_1R1W.v",
+      "impl\/verilog\/mmult_mmult_Pipeline_1.v",
+      "impl\/verilog\/mmult_mmult_Pipeline_2.v",
+      "impl\/verilog\/mmult_mmult_Pipeline_4.v",
+      "impl\/verilog\/mmult_mmult_Pipeline_systolic1.v",
+      "impl\/verilog\/mmult_mul_32s_32s_32_2_1.v",
+      "impl\/verilog\/mmult_mux_164_32_1_1.v",
+      "impl\/verilog\/mmult_systolic_m_axi.v",
+      "impl\/verilog\/mmult.v"
+    ],
+    "IpMisc": ["impl\/misc\/logo.png"],
+    "CsynthXml": "syn\/report\/csynth.xml",
+    "DebugDir": ".debug",
+    "KernelXml": ".autopilot\/db\/kernel.internal.xml",
+    "Xo": "",
+    "XoHlsDir": "",
+    "ProtoInst": [".debug\/mmult.protoinst"]
+  },
+  "SubcoreInfo": {
+    "HasXpmMemory": false,
+    "HasClockedDsp": false,
+    "Ip": []
+  },
+  "Interfaces": {
+    "ap_clk": {
+      "type": "clock",
+      "busTypeName": "clock",
+      "mode": "slave",
+      "busParams": {
+        "ASSOCIATED_BUSIF": "m_axi_systolic",
+        "ASSOCIATED_RESET": "ap_rst_n"
+      },
+      "portMap": {"ap_clk": "CLK"},
+      "ports": ["ap_clk"]
+    },
+    "ap_rst_n": {
+      "type": "reset",
+      "busTypeName": "reset",
+      "mode": "slave",
+      "busParams": {"POLARITY": "ACTIVE_LOW"},
+      "portMap": {"ap_rst_n": "RST"},
+      "ports": ["ap_rst_n"]
+    },
+    "ap_ctrl": {
+      "type": "ap_ctrl",
+      "busTypeName": "acc_handshake",
+      "mode": "slave",
+      "portMap": {
+        "ap_start": "start",
+        "ap_done": "done",
+        "ap_idle": "idle",
+        "ap_ready": "ready"
+      },
+      "ports": [
+        "ap_done",
+        "ap_idle",
+        "ap_ready",
+        "ap_start"
+      ]
+    },
+    "m_axi_systolic": {
+      "type": "axi4full",
+      "busTypeName": "aximm",
+      "mode": "master",
+      "dataWidth": "512",
+      "addrWidth": "64",
+      "portPrefix": "m_axi_systolic_",
+      "paramPrefix": "C_M_AXI_SYSTOLIC_",
+      "preferredUsageValue": "MEMORY",
+      "busParams": {
+        "NUM_READ_OUTSTANDING": "16",
+        "NUM_WRITE_OUTSTANDING": "16",
+        "MAX_READ_BURST_LENGTH": "16",
+        "MAX_WRITE_BURST_LENGTH": "16",
+        "MAX_BURST_LENGTH": "256",
+        "PROTOCOL": "AXI4",
+        "READ_WRITE_MODE": "READ_WRITE",
+        "HAS_BURST": "0",
+        "SUPPORTS_NARROW_BURST": "0"
+      },
+      "ports": [
+        "m_axi_systolic_ARADDR",
+        "m_axi_systolic_ARBURST",
+        "m_axi_systolic_ARCACHE",
+        "m_axi_systolic_ARID",
+        "m_axi_systolic_ARLEN",
+        "m_axi_systolic_ARLOCK",
+        "m_axi_systolic_ARPROT",
+        "m_axi_systolic_ARQOS",
+        "m_axi_systolic_ARREADY",
+        "m_axi_systolic_ARREGION",
+        "m_axi_systolic_ARSIZE",
+        "m_axi_systolic_ARUSER",
+        "m_axi_systolic_ARVALID",
+        "m_axi_systolic_AWADDR",
+        "m_axi_systolic_AWBURST",
+        "m_axi_systolic_AWCACHE",
+        "m_axi_systolic_AWID",
+        "m_axi_systolic_AWLEN",
+        "m_axi_systolic_AWLOCK",
+        "m_axi_systolic_AWPROT",
+        "m_axi_systolic_AWQOS",
+        "m_axi_systolic_AWREADY",
+        "m_axi_systolic_AWREGION",
+        "m_axi_systolic_AWSIZE",
+        "m_axi_systolic_AWUSER",
+        "m_axi_systolic_AWVALID",
+        "m_axi_systolic_BID",
+        "m_axi_systolic_BREADY",
+        "m_axi_systolic_BRESP",
+        "m_axi_systolic_BUSER",
+        "m_axi_systolic_BVALID",
+        "m_axi_systolic_RDATA",
+        "m_axi_systolic_RID",
+        "m_axi_systolic_RLAST",
+        "m_axi_systolic_RREADY",
+        "m_axi_systolic_RRESP",
+        "m_axi_systolic_RUSER",
+        "m_axi_systolic_RVALID",
+        "m_axi_systolic_WDATA",
+        "m_axi_systolic_WID",
+        "m_axi_systolic_WLAST",
+        "m_axi_systolic_WREADY",
+        "m_axi_systolic_WSTRB",
+        "m_axi_systolic_WUSER",
+        "m_axi_systolic_WVALID"
+      ],
+      "constraints": [
+        {
+          "constraint_type": "pragma interface",
+          "mode": "m_axi",
+          "register_option": "0",
+          "offset": "direct",
+          "latency": "0",
+          "num_read_outstanding": "16",
+          "num_write_outstanding": "16",
+          "max_read_burst_length": "16",
+          "max_write_burst_length": "16",
+          "max_widen_bitwidth": "512",
+          "argName": "a"
+        },
+        {
+          "constraint_type": "bitwidth",
+          "orig_bitwidth": "32",
+          "final_bitwidth": "512",
+          "argName": "a"
+        },
+        {
+          "constraint_type": "pragma interface",
+          "mode": "m_axi",
+          "register_option": "0",
+          "offset": "direct",
+          "latency": "0",
+          "num_read_outstanding": "16",
+          "num_write_outstanding": "16",
+          "max_read_burst_length": "16",
+          "max_write_burst_length": "16",
+          "max_widen_bitwidth": "512",
+          "argName": "b"
+        },
+        {
+          "constraint_type": "bitwidth",
+          "orig_bitwidth": "32",
+          "final_bitwidth": "512",
+          "argName": "b"
+        },
+        {
+          "constraint_type": "pragma interface",
+          "mode": "m_axi",
+          "register_option": "0",
+          "offset": "direct",
+          "latency": "0",
+          "num_read_outstanding": "16",
+          "num_write_outstanding": "16",
+          "max_read_burst_length": "16",
+          "max_write_burst_length": "16",
+          "max_widen_bitwidth": "512",
+          "argName": "c"
+        },
+        {
+          "constraint_type": "bitwidth",
+          "orig_bitwidth": "32",
+          "final_bitwidth": "512",
+          "argName": "c"
+        }
+      ]
+    },
+    "work_id_out_stream": {
+      "type": "ap_fifo",
+      "busTypeName": "acc_fifo_write",
+      "mode": "master",
+      "dataWidth": "32",
+      "portPrefix": "work_id_out_stream_",
+      "portMap": {
+        "work_id_out_stream_din": "WR_DATA",
+        "work_id_out_stream_full_n": "FULL_N",
+        "work_id_out_stream_write": "WR_EN"
+      },
+      "ports": [
+        "work_id_out_stream_din",
+        "work_id_out_stream_full_n",
+        "work_id_out_stream_write"
+      ],
+      "constraints": [{
+          "constraint_type": "pragma interface",
+          "mode": "ap_fifo",
+          "register_option": "0",
+          "argName": "work_id_out_stream"
+        }]
+    },
+    "a": {
+      "type": "data",
+      "busTypeName": "data",
+      "protocol": "ap_none",
+      "mode": "slave",
+      "dataWidth": "64",
+      "portMap": {"a": "DATA"},
+      "ports": ["a"],
+      "constraints": [{
+          "constraint_type": "pragma interface",
+          "mode": "ap_none",
+          "register_option": "0",
+          "argName": "a"
+        }]
+    },
+    "b": {
+      "type": "data",
+      "busTypeName": "data",
+      "protocol": "ap_none",
+      "mode": "slave",
+      "dataWidth": "64",
+      "portMap": {"b": "DATA"},
+      "ports": ["b"],
+      "constraints": [{
+          "constraint_type": "pragma interface",
+          "mode": "ap_none",
+          "register_option": "0",
+          "argName": "b"
+        }]
+    },
+    "c": {
+      "type": "data",
+      "busTypeName": "data",
+      "protocol": "ap_none",
+      "mode": "slave",
+      "dataWidth": "64",
+      "portMap": {"c": "DATA"},
+      "ports": ["c"],
+      "constraints": [{
+          "constraint_type": "pragma interface",
+          "mode": "ap_none",
+          "register_option": "0",
+          "argName": "c"
+        }]
+    },
+    "a_row": {
+      "type": "data",
+      "busTypeName": "data",
+      "protocol": "ap_vld",
+      "mode": "slave",
+      "dataWidth": "32",
+      "portMap": {"a_row": "DATA"},
+      "ports": ["a_row"],
+      "constraints": [{
+          "constraint_type": "pragma interface",
+          "mode": "ap_vld",
+          "register_option": "0",
+          "argName": "a_row"
+        }]
+    },
+    "a_col": {
+      "type": "data",
+      "busTypeName": "data",
+      "protocol": "ap_vld",
+      "mode": "slave",
+      "dataWidth": "32",
+      "portMap": {"a_col": "DATA"},
+      "ports": ["a_col"],
+      "constraints": [{
+          "constraint_type": "pragma interface",
+          "mode": "ap_vld",
+          "register_option": "0",
+          "argName": "a_col"
+        }]
+    },
+    "b_col": {
+      "type": "data",
+      "busTypeName": "data",
+      "protocol": "ap_vld",
+      "mode": "slave",
+      "dataWidth": "32",
+      "portMap": {"b_col": "DATA"},
+      "ports": ["b_col"],
+      "constraints": [{
+          "constraint_type": "pragma interface",
+          "mode": "ap_vld",
+          "register_option": "0",
+          "argName": "b_col"
+        }]
+    },
+    "work_id": {
+      "type": "data",
+      "busTypeName": "data",
+      "protocol": "ap_vld",
+      "mode": "slave",
+      "dataWidth": "32",
+      "portMap": {"work_id": "DATA"},
+      "ports": ["work_id"],
+      "constraints": [{
+          "constraint_type": "pragma interface",
+          "mode": "ap_vld",
+          "register_option": "0",
+          "argName": "work_id"
+        }]
+    }
+  },
+  "RtlPorts": {
+    "ap_local_block": {
+      "dir": "out",
+      "width": "1",
+      "isVector": "true"
+    },
+    "ap_local_deadlock": {
+      "dir": "out",
+      "width": "1",
+      "isVector": "true"
+    },
+    "ap_clk": {
+      "dir": "in",
+      "width": "1"
+    },
+    "ap_rst_n": {
+      "dir": "in",
+      "width": "1"
+    },
+    "ap_start": {
+      "dir": "in",
+      "width": "1"
+    },
+    "ap_done": {
+      "dir": "out",
+      "width": "1"
+    },
+    "ap_idle": {
+      "dir": "out",
+      "width": "1"
+    },
+    "ap_ready": {
+      "dir": "out",
+      "width": "1"
+    },
+    "m_axi_systolic_AWVALID": {
+      "dir": "out",
+      "width": "1"
+    },
+    "m_axi_systolic_AWREADY": {
+      "dir": "in",
+      "width": "1"
+    },
+    "m_axi_systolic_AWADDR": {
+      "dir": "out",
+      "width": "64"
+    },
+    "m_axi_systolic_AWID": {
+      "dir": "out",
+      "width": "1",
+      "isVector": "true"
+    },
+    "m_axi_systolic_AWLEN": {
+      "dir": "out",
+      "width": "8"
+    },
+    "m_axi_systolic_AWSIZE": {
+      "dir": "out",
+      "width": "3"
+    },
+    "m_axi_systolic_AWBURST": {
+      "dir": "out",
+      "width": "2"
+    },
+    "m_axi_systolic_AWLOCK": {
+      "dir": "out",
+      "width": "2"
+    },
+    "m_axi_systolic_AWCACHE": {
+      "dir": "out",
+      "width": "4"
+    },
+    "m_axi_systolic_AWPROT": {
+      "dir": "out",
+      "width": "3"
+    },
+    "m_axi_systolic_AWQOS": {
+      "dir": "out",
+      "width": "4"
+    },
+    "m_axi_systolic_AWREGION": {
+      "dir": "out",
+      "width": "4"
+    },
+    "m_axi_systolic_AWUSER": {
+      "dir": "out",
+      "width": "1",
+      "isVector": "true"
+    },
+    "m_axi_systolic_WVALID": {
+      "dir": "out",
+      "width": "1"
+    },
+    "m_axi_systolic_WREADY": {
+      "dir": "in",
+      "width": "1"
+    },
+    "m_axi_systolic_WDATA": {
+      "dir": "out",
+      "width": "512"
+    },
+    "m_axi_systolic_WSTRB": {
+      "dir": "out",
+      "width": "64"
+    },
+    "m_axi_systolic_WLAST": {
+      "dir": "out",
+      "width": "1"
+    },
+    "m_axi_systolic_WID": {
+      "dir": "out",
+      "width": "1",
+      "isVector": "true"
+    },
+    "m_axi_systolic_WUSER": {
+      "dir": "out",
+      "width": "1",
+      "isVector": "true"
+    },
+    "m_axi_systolic_ARVALID": {
+      "dir": "out",
+      "width": "1"
+    },
+    "m_axi_systolic_ARREADY": {
+      "dir": "in",
+      "width": "1"
+    },
+    "m_axi_systolic_ARADDR": {
+      "dir": "out",
+      "width": "64"
+    },
+    "m_axi_systolic_ARID": {
+      "dir": "out",
+      "width": "1",
+      "isVector": "true"
+    },
+    "m_axi_systolic_ARLEN": {
+      "dir": "out",
+      "width": "8"
+    },
+    "m_axi_systolic_ARSIZE": {
+      "dir": "out",
+      "width": "3"
+    },
+    "m_axi_systolic_ARBURST": {
+      "dir": "out",
+      "width": "2"
+    },
+    "m_axi_systolic_ARLOCK": {
+      "dir": "out",
+      "width": "2"
+    },
+    "m_axi_systolic_ARCACHE": {
+      "dir": "out",
+      "width": "4"
+    },
+    "m_axi_systolic_ARPROT": {
+      "dir": "out",
+      "width": "3"
+    },
+    "m_axi_systolic_ARQOS": {
+      "dir": "out",
+      "width": "4"
+    },
+    "m_axi_systolic_ARREGION": {
+      "dir": "out",
+      "width": "4"
+    },
+    "m_axi_systolic_ARUSER": {
+      "dir": "out",
+      "width": "1",
+      "isVector": "true"
+    },
+    "m_axi_systolic_RVALID": {
+      "dir": "in",
+      "width": "1"
+    },
+    "m_axi_systolic_RREADY": {
+      "dir": "out",
+      "width": "1"
+    },
+    "m_axi_systolic_RDATA": {
+      "dir": "in",
+      "width": "512"
+    },
+    "m_axi_systolic_RLAST": {
+      "dir": "in",
+      "width": "1"
+    },
+    "m_axi_systolic_RID": {
+      "dir": "in",
+      "width": "1",
+      "isVector": "true"
+    },
+    "m_axi_systolic_RUSER": {
+      "dir": "in",
+      "width": "1",
+      "isVector": "true"
+    },
+    "m_axi_systolic_RRESP": {
+      "dir": "in",
+      "width": "2"
+    },
+    "m_axi_systolic_BVALID": {
+      "dir": "in",
+      "width": "1"
+    },
+    "m_axi_systolic_BREADY": {
+      "dir": "out",
+      "width": "1"
+    },
+    "m_axi_systolic_BRESP": {
+      "dir": "in",
+      "width": "2"
+    },
+    "m_axi_systolic_BID": {
+      "dir": "in",
+      "width": "1",
+      "isVector": "true"
+    },
+    "m_axi_systolic_BUSER": {
+      "dir": "in",
+      "width": "1",
+      "isVector": "true"
+    },
+    "work_id_out_stream_din": {
+      "dir": "out",
+      "width": "32"
+    },
+    "work_id_out_stream_full_n": {
+      "dir": "in",
+      "width": "1"
+    },
+    "work_id_out_stream_write": {
+      "dir": "out",
+      "width": "1"
+    },
+    "a": {
+      "dir": "in",
+      "width": "64"
+    },
+    "b": {
+      "dir": "in",
+      "width": "64"
+    },
+    "c": {
+      "dir": "in",
+      "width": "64"
+    },
+    "a_row": {
+      "dir": "in",
+      "width": "32"
+    },
+    "a_row_ap_vld": {
+      "dir": "in",
+      "width": "1"
+    },
+    "a_col": {
+      "dir": "in",
+      "width": "32"
+    },
+    "a_col_ap_vld": {
+      "dir": "in",
+      "width": "1"
+    },
+    "b_col": {
+      "dir": "in",
+      "width": "32"
+    },
+    "b_col_ap_vld": {
+      "dir": "in",
+      "width": "1"
+    },
+    "work_id": {
+      "dir": "in",
+      "width": "32"
+    },
+    "work_id_ap_vld": {
+      "dir": "in",
+      "width": "1"
+    }
+  },
+  "ModuleInfo": {
+    "Hierarchy": {
+      "ModuleName": "mmult",
+      "Instances": [
+        {
+          "ModuleName": "mmult_Pipeline_1",
+          "InstanceName": "grp_mmult_Pipeline_1_fu_1354"
+        },
+        {
+          "ModuleName": "mmult_Pipeline_2",
+          "InstanceName": "grp_mmult_Pipeline_2_fu_1377"
+        },
+        {
+          "ModuleName": "mmult_Pipeline_systolic1",
+          "InstanceName": "grp_mmult_Pipeline_systolic1_fu_1400"
+        },
+        {
+          "ModuleName": "mmult_Pipeline_4",
+          "InstanceName": "grp_mmult_Pipeline_4_fu_1726"
+        }
+      ]
+    },
+    "Info": {
+      "mmult_Pipeline_1": {
+        "FunctionProtocol": "ap_ctrl_hs",
+        "isTaskLevelControl": "0",
+        "isPipelined": "1",
+        "isCombinational": "0",
+        "isOneStateSeq": "0"
+      },
+      "mmult_Pipeline_2": {
+        "FunctionProtocol": "ap_ctrl_hs",
+        "isTaskLevelControl": "0",
+        "isPipelined": "1",
+        "isCombinational": "0",
+        "isOneStateSeq": "0"
+      },
+      "mmult_Pipeline_systolic1": {
+        "FunctionProtocol": "ap_ctrl_hs",
+        "isTaskLevelControl": "0",
+        "isPipelined": "1",
+        "isCombinational": "0",
+        "isOneStateSeq": "0"
+      },
+      "mmult_Pipeline_4": {
+        "FunctionProtocol": "ap_ctrl_hs",
+        "isTaskLevelControl": "0",
+        "isPipelined": "1",
+        "isCombinational": "0",
+        "isOneStateSeq": "0"
+      },
+      "mmult": {
+        "FunctionProtocol": "ap_ctrl_hs",
+        "isTaskLevelControl": "0",
+        "isPipelined": "0",
+        "isCombinational": "0",
+        "isOneStateSeq": "0"
+      }
+    },
+    "Metrics": {
+      "mmult_Pipeline_1": {
+        "Latency": {
+          "LatencyBest": "259",
+          "LatencyAvg": "259",
+          "LatencyWorst": "259",
+          "PipelineII": "259",
+          "PipelineDepth": "",
+          "PipelineType": "no"
+        },
+        "Timing": {
+          "Target": "4.00",
+          "Uncertainty": "1.08",
+          "Estimate": "2.920"
+        },
+        "Loops": [{
+            "Name": "Loop 1",
+            "TripCount": "256",
+            "Latency": "257",
+            "PipelineII": "1",
+            "PipelineDepth": "3"
+          }],
+        "Area": {
+          "FF": "1026",
+          "AVAIL_FF": "2364480",
+          "UTIL_FF": "~0",
+          "LUT": "112",
+          "AVAIL_LUT": "1182240",
+          "UTIL_LUT": "~0",
+          "BRAM_18K": "0",
+          "AVAIL_BRAM": "4320",
+          "UTIL_BRAM": "0",
+          "DSP": "0",
+          "AVAIL_DSP": "6840",
+          "UTIL_DSP": "0",
+          "URAM": "0",
+          "AVAIL_URAM": "960",
+          "UTIL_URAM": "0"
+        }
+      },
+      "mmult_Pipeline_2": {
+        "Latency": {
+          "LatencyBest": "259",
+          "LatencyAvg": "259",
+          "LatencyWorst": "259",
+          "PipelineII": "259",
+          "PipelineDepth": "",
+          "PipelineType": "no"
+        },
+        "Timing": {
+          "Target": "4.00",
+          "Uncertainty": "1.08",
+          "Estimate": "2.920"
+        },
+        "Loops": [{
+            "Name": "Loop 1",
+            "TripCount": "256",
+            "Latency": "257",
+            "PipelineII": "1",
+            "PipelineDepth": "3"
+          }],
+        "Area": {
+          "FF": "1026",
+          "AVAIL_FF": "2364480",
+          "UTIL_FF": "~0",
+          "LUT": "112",
+          "AVAIL_LUT": "1182240",
+          "UTIL_LUT": "~0",
+          "BRAM_18K": "0",
+          "AVAIL_BRAM": "4320",
+          "UTIL_BRAM": "0",
+          "DSP": "0",
+          "AVAIL_DSP": "6840",
+          "UTIL_DSP": "0",
+          "URAM": "0",
+          "AVAIL_URAM": "960",
+          "UTIL_URAM": "0"
+        }
+      },
+      "mmult_Pipeline_systolic1": {
+        "Latency": {
+          "LatencyBest": "21",
+          "LatencyAvg": "21",
+          "LatencyWorst": "21",
+          "PipelineII": "21",
+          "PipelineDepth": "",
+          "PipelineType": "no"
+        },
+        "Timing": {
+          "Target": "4.00",
+          "Uncertainty": "1.08",
+          "Estimate": "2.291"
+        },
+        "Loops": [{
+            "Name": "systolic1",
+            "TripCount": "16",
+            "Latency": "19",
+            "PipelineII": "1",
+            "PipelineDepth": "5"
+          }],
+        "Area": {
+          "DSP": "768",
+          "AVAIL_DSP": "6840",
+          "UTIL_DSP": "11",
+          "FF": "59819",
+          "AVAIL_FF": "2364480",
+          "UTIL_FF": "2",
+          "LUT": "31925",
+          "AVAIL_LUT": "1182240",
+          "UTIL_LUT": "2",
+          "BRAM_18K": "0",
+          "AVAIL_BRAM": "4320",
+          "UTIL_BRAM": "0",
+          "URAM": "0",
+          "AVAIL_URAM": "960",
+          "UTIL_URAM": "0"
+        }
+      },
+      "mmult_Pipeline_4": {
+        "Latency": {
+          "LatencyBest": "258",
+          "LatencyAvg": "258",
+          "LatencyWorst": "258",
+          "PipelineII": "258",
+          "PipelineDepth": "",
+          "PipelineType": "no"
+        },
+        "Timing": {
+          "Target": "4.00",
+          "Uncertainty": "1.08",
+          "Estimate": "2.920"
+        },
+        "Loops": [{
+            "Name": "Loop 1",
+            "TripCount": "256",
+            "Latency": "256",
+            "PipelineII": "1",
+            "PipelineDepth": "2"
+          }],
+        "Area": {
+          "FF": "525",
+          "AVAIL_FF": "2364480",
+          "UTIL_FF": "~0",
+          "LUT": "1609",
+          "AVAIL_LUT": "1182240",
+          "UTIL_LUT": "~0",
+          "BRAM_18K": "0",
+          "AVAIL_BRAM": "4320",
+          "UTIL_BRAM": "0",
+          "DSP": "0",
+          "AVAIL_DSP": "6840",
+          "UTIL_DSP": "0",
+          "URAM": "0",
+          "AVAIL_URAM": "960",
+          "UTIL_URAM": "0"
+        }
+      },
+      "mmult": {
+        "Latency": {
+          "LatencyBest": "823",
+          "LatencyAvg": "823",
+          "LatencyWorst": "823",
+          "PipelineII": "824",
+          "PipelineDepth": "",
+          "PipelineType": "no"
+        },
+        "Timing": {
+          "Target": "4.00",
+          "Uncertainty": "1.08",
+          "Estimate": "2.920"
+        },
+        "Area": {
+          "BRAM_18K": "30",
+          "AVAIL_BRAM": "4320",
+          "UTIL_BRAM": "~0",
+          "DSP": "768",
+          "AVAIL_DSP": "6840",
+          "UTIL_DSP": "11",
+          "FF": "65204",
+          "AVAIL_FF": "2364480",
+          "UTIL_FF": "2",
+          "LUT": "38884",
+          "AVAIL_LUT": "1182240",
+          "UTIL_LUT": "3",
+          "URAM": "0",
+          "AVAIL_URAM": "960",
+          "UTIL_URAM": "0"
+        }
+      }
+    }
+  },
+  "GenerateBdFiles": "0",
+  "GenData": {
+    "DataVersion": "0.2",
+    "Time": "2024-10-18 05:35:48 +08",
+    "ToolName": "vitis_hls",
+    "ToolVersion": "2021.2"
+  }
+}

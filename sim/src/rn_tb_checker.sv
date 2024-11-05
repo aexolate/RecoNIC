@@ -307,6 +307,7 @@ assign rd_golden_axis_pkt = s_axis_tready && s_axis_tvalid && !golden_pkt_empty;
 always_comb begin
   packet_mismatch = 1'b0;
   if(s_axis_tvalid && s_axis_tready) begin
+    $display("ADDINFO: Checking data...");
     packet_mismatch = !((golden_axis_tdata_fifo_out==s_axis_tdata) && (golden_axis_tkeep_fifo_out==s_axis_tkeep) && (golden_axis_tlast_fifo_out==s_axis_tlast));
   end
 end

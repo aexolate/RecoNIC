@@ -1,0 +1,7 @@
+Running: xsim.dir/rn_tb_2rdma_top_opt_client.rec_client/xsimk -simmode gui -wdb rn_tb_2rdma_top_opt_client.rec_client.wdb -simrunnum 0 -socket 38549
+Design successfully loaded
+Design Loading Memory Usage: 54148 KB (Peak: 54148 KB)
+Design Loading CPU Usage: 30 ms
+Simulation completed
+Simulation Memory Usage: 294768 KB (Peak: 294768 KB)
+Simulation CPU Usage: 147160 ms

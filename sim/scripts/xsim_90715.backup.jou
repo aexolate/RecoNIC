@@ -1,0 +1,14 @@
+#-----------------------------------------------------------
+# xsim v2021.2 (64-bit)
+# SW Build 3367213 on Tue Oct 19 02:47:39 MDT 2021
+# IP Build 3369179 on Thu Oct 21 08:25:16 MDT 2021
+# Start of session at: Tue Nov  5 06:29:27 2024
+# Process ID: 90715
+# Current directory: /home/gexl/Desktop/test2/RecoNIC/sim/scripts
+# Command line: xsim -log xsim_simulate.log -mode tcl -source {xsim.dir/rn_tb_2rdma_top_opt_client.rec_client/xsim_script.tcl}
+# Log file: /home/gexl/Desktop/test2/RecoNIC/sim/scripts/xsim_simulate.log
+# Journal file: /home/gexl/Desktop/test2/RecoNIC/sim/scripts/xsim.jou
+# Running On: b8bcb24f948d, OS: Linux, CPU Frequency: 3593.252 MHz, CPU Physical cores: 5, Host memory: 10585 MB
+#-----------------------------------------------------------
+source xsim.dir/rn_tb_2rdma_top_opt_client.rec_client/xsim_script.tcl
+source xsim_tb_top.tcl

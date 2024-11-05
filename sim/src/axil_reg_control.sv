@@ -112,7 +112,7 @@ begin
         if (!eof_rdma_conf) begin
           if(!config_vld) begin
             if (32'h2 != $fscanf(rn_rdma_conf, "%x %x", config_addr, config_data)) begin
-              $display("INFO: [axil_reg_control] time=%t, Finished reading %s file", $time, $sformatf("%s.txt", rdma_cfg_filename));
+              $display("INFO: [axil_reg_control | configure?] time=%t, Finished reading %s file", $time, $sformatf("%s.txt", rdma_cfg_filename));
               config_data <= 32'd0;
               config_addr <= 32'd0;
               config_vld  <= 1'b0;
@@ -145,7 +145,7 @@ begin
         if (!eof_rdma_recv_conf) begin
           if(!config_rq_vld && !poll_rq_pidb_vld) begin
             if (32'h2 != $fscanf(rn_rdma_recv_conf, "%x %x", rq_addr, rq_golden_value)) begin
-              $display("INFO: [axil_reg_control] time=%t, Finished reading %s file", $time, $sformatf("%s.txt", rdma_recv_cfg_filename));
+              $display("INFO: [axil_reg_control | RQ completion] time=%t, Finished reading %s file", $time, $sformatf("%s.txt", rdma_recv_cfg_filename));
               rq_golden_value <= 32'd0;
               rq_addr         <= 32'd0;
               config_rq_vld   <= 1'b0;
@@ -319,7 +319,7 @@ begin
         if (!eof_rdma_stat_read) begin
           if(!stat_reg_vld) begin
             if (32'h1 != $fscanf(rn_rdma_stat_read, "%x", stat_reg_addr)) begin
-              $display("INFO: [axil_reg_control] time=%t, Finished reading %s file\n", $time, $sformatf("%s.txt", rdma_stat_filename));
+              $display("INFO: [axil_reg_control | statistics] time=%t, Finished reading %s file\n", $time, $sformatf("%s.txt", rdma_stat_filename));
               stat_reg_addr <= 32'd0;
               stat_reg_vld  <= 1'b0;
 

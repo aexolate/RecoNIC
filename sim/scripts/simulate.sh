@@ -18,36 +18,13 @@ root_dir=$(dirname $sim_dir)
 sim_src_dir=${sim_dir}/src
 sim_script_dir=${sim_dir}/scripts
 
-# Questasim main
-run_questasim()
-{
-  echo "current directory: $(pwd)"
+sb_pcisocket=""
+sb_shmpath=""
+sb_syncperiod=""
+sb_pcilat=""
+sb_name=""
+sb_side=0
 
-  if [[ ! -d "${build_dir}/questa_lib" ]]; then
-    mkdir -p ${build_dir}/questa_lib
-  fi
-
-  # Copy modelsim.ini to sim/src
-  cp ${COMPILED_LIB_DIR}/modelsim.ini ${sim_dir}/scripts
-
-  copy_test_data $1
-  
-  top_module_name="$3"
-  top_module_opt="${top_module_name}_opt"
-
-  # Compile
-  source questasim_compile.do 2>&1 | tee -a questasim_compile.log
-
-  # Elaborate, reco - RecoNIC work library 
-  vopt -64 +acc=npr -L reco -L xilinx_vip -L xpm -L axi_crossbar_v2_1_26 -L axi_protocol_checker_v2_0_11 -L cam_v2_2_2 -L vitis_net_p4_v1_0_2 -L blk_mem_gen_v8_4_5 -L lib_bmg_v1_0_14 -L fifo_generator_v13_2_6 -L lib_fifo_v1_0_15 -L ernic_v3_1_1 -L unisims_ver -L unimacro_ver -L secureip -work reco reco.$top_module_name reco.glbl -o $top_module_opt -l questasim_elaborate.log
-
-  # Simulate
-  if [[ $2 == "off" ]]; then
-    vsim -64 -c -work reco $top_module_opt -do 'add wave -r /*; run -all' -l questasim_simulate.log
-  else
-    vsim -64 -work reco $top_module_opt -do 'add wave -r /*; run -all' -l questasim_simulate.log
-  fi
-}
 
 # Vivado xsim main
 run_xsim()
@@ -63,16 +40,65 @@ run_xsim()
 
   # Elaborate reco
   if [[ "$3" == "cl_tb_top" ]]; then
-    xelab --incr --relax --debug typical --mt auto -L reco -L ernic_v3_1_1 -L xilinx_vip -L xpm -L cam_v2_2_2 -L vitis_net_p4_v1_0_2 -L -L axi_protocol_checker_v2_0_8 -L unisims_ver -L unimacro_ver -L secureip --snapshot $top_module_opt reco.cl_tb_top reco.glbl -log xsim_elaborate.log
+      xelab --incr --relax --debug typical --mt auto \
+          -L reco \
+          -L ernic_v3_1_1 \
+          -L xilinx_vip \
+          -L xpm \
+          -L cam_v2_2_2 \
+          -L vitis_net_p4_v1_0_2 \
+          -L axi_protocol_checker_v2_0_8 \
+          -L unisims_ver \
+          -L unimacro_ver \
+          -L secureip \
+          --snapshot $top_module_opt reco.cl_tb_top reco.glbl \
+          -log xsim_elaborate.log
   elif [[ "$3" == "rn_tb_2rdma_top" ]]; then
-    xelab --incr --relax --debug typical --mt auto -L reco -L ernic_v3_1_1 -L xilinx_vip -L xpm -L cam_v2_2_2 -L vitis_net_p4_v1_0_2 -L -L axi_protocol_checker_v2_0_8 -L unisims_ver -L unimacro_ver -L secureip --snapshot $top_module_opt reco.rn_tb_2rdma_top reco.glbl -log xsim_elaborate.log
+
+      if [[ $sb_side -eq 0 ]]; then
+        top_module_selected="reco.rn_tb_2rdma_top"
+      else
+        top_module_selected="reco.rn_tb_2rdma_top_remote"
+      fi
+
+      xelab --incr --relax --debug typical --mt auto \
+          --sv_root /home/gexl/Desktop/reconic_adapter/simbricks \
+          --sv_lib xsim_adapter \
+          --generic_top SIMBRICKS_PCI_SOCKET=$sb_pcisocket \
+          --generic_top SHM_PATH=$sb_shmpath \
+          --generic_top SYNC_PERIOD=$sb_syncperiod \
+          --generic_top PCI_LATENCY=$sb_pcilat \
+          -L reco \
+          -L ernic_v3_1_1 \
+          -L xilinx_vip \
+          -L xpm \
+          -L cam_v2_2_2 \
+          -L vitis_net_p4_v1_0_2 \
+          -L axi_protocol_checker_v2_0_8 \
+          -L unisims_ver \
+          -L unimacro_ver \
+          -L secureip \
+          --snapshot "${top_module_opt}_${sb_name}" $top_module_selected reco.glbl \
+          -log xsim_elaborate.log
   else 
-    xelab --incr --relax --debug typical --mt auto -L reco -L ernic_v3_1_1  -L xilinx_vip -L xpm -L cam_v2_2_2 -L vitis_net_p4_v1_0_2 -L -L axi_protocol_checker_v2_0_8 -L unisims_ver -L unimacro_ver -L secureip --snapshot $top_module_opt reco.rn_tb_top reco.glbl -log xsim_elaborate.log
+      xelab --incr --relax --debug typical --mt auto \
+          -L reco \
+          -L ernic_v3_1_1 \
+          -L xilinx_vip \
+          -L xpm \
+          -L cam_v2_2_2 \
+          -L vitis_net_p4_v1_0_2 \
+          -L axi_protocol_checker_v2_0_8 \
+          -L unisims_ver \
+          -L unimacro_ver \
+          -L secureip \
+          --snapshot $top_module_opt reco.rn_tb_top reco.glbl \
+          -log xsim_elaborate.log
   fi
 
   # Simulate
   if [[ $2 == "off" ]]; then
-    xsim ${top_module_name}_opt -key {Behavioral:sim_1:Functional:${top_module_name}} -tclbatch xsim_tb_top.tcl -log xsim_simulate.log
+    xsim "${top_module_opt}_${sb_name}" -key {Behavioral:sim_1:Functional:${top_module_name}} -tclbatch xsim_tb_top.tcl -log xsim_simulate.log
   else
     xsim -g $top_module_opt -key {Behavioral:sim_1:Functional:${top_module_name}} -tclbatch xsim_tb_top.tcl -log xsim_simulate.log
   fi
@@ -182,7 +208,7 @@ while [[ $# -gt 0 ]]; do
       shift
       shift
       ;;
-    -s|--simulatior)
+    -s|--simulator)
       simulator="$2"
       shift
       shift
@@ -196,6 +222,36 @@ while [[ $# -gt 0 ]]; do
       clean
       shift 
       ;;
+    -sb_pcisocket)
+      sb_pcisocket="$2"
+      shift
+      shift
+      ;;
+    -sb_shmpath)
+      sb_shmpath="$2"
+      shift
+      shift
+      ;;
+    -sb_syncperiod)
+      sb_syncperiod="$2"
+      shift
+      shift
+      ;;
+    -sb_pcilat)
+      sb_pcilat="$2"
+      shift
+      shift
+      ;;
+    -sb_name)
+      sb_name="$2"
+      shift
+      shift
+      ;;
+    -sb_side)
+      sb_side="$2"
+      shift
+      shift
+      ;;
     *) # Invalid option
       echo "ERROR: Invalid option"
       usage
@@ -207,6 +263,12 @@ if [[ $top_module == "" ]]; then
   echo "ERROR: Please provide top module name of the testbenches"
   usage
 fi
+
+echo "INFO: Using PCI Socket: $sb_pcisocket"
+echo "INFO: Using SHM Path: $sb_shmpath"
+echo "INFO: Using Sync Period: $sb_syncperiod"
+echo "INFO: Using PCI Latency: $sb_pcilat"
+echo "INFO: Using Name: $sb_name"
 
 if [[ $simulator == "questasim" ]]; then
   echo "INFO: Start questasim simulation"

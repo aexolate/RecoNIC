@@ -1425,7 +1425,7 @@ class GenRoCEClass(pktGenClass):
 
     logger.info("RDMA per-pd_num memory region configuration generation is done")
 
-  def gen_rdma_wqe(self, qpid, wrid, ith_wqe, payload_addr, payload_len, opcode, remote_offset, remote_key, send_data=0, immdt_data=0):
+  def gen_rdma_wqe(self, qpid, wrid, ith_wqe, payload_addr, payload_len, opcode, remote_offset, remote_key, send_data=0xdeaf, immdt_data=0):
     """Generate RDMA work request entry (WQE)
     Args:
       qpid          (int): Queue Pair ID
@@ -1675,6 +1675,5 @@ if __name__ == "__main__":
     exit()
   config_fname = sys.argv[1]
   pkt_gen = pktGenClass(config_fname)
-
 
 

@@ -1,0 +1,188 @@
+==============================================================
+Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2021.2 (64-bit)
+Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [HLS 200-1505] Using flow_target 'vivado'
+INFO: [HLS 200-1510] Running: set_part xcvu9p-flga2104-2L-e 
+INFO: [HLS 200-1611] Setting target device to 'xcvu9p-flga2104-2L-e'
+INFO: [HLS 200-1510] Running: create_clock -period 4 -name default 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 4ns.
+INFO: [HLS 200-1510] Running: config_interface -m_axi_alignment_byte_size 64 -m_axi_max_widen_bitwidth 512 
+INFO: [HLS 200-1510] Running: csim_design 
+INFO: [SIM 211-2] *************** CSIM start ***************
+INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
+INFO: [SIM 211-1] CSim done with 0 errors.
+INFO: [SIM 211-3] *************** CSIM finish ***************
+INFO: [HLS 200-111] Finished Command csim_design CPU user time: 1.53 seconds. CPU system time: 0.18 seconds. Elapsed time: 0.87 seconds; current allocated memory: -937.109 MB.
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.01 seconds; current allocated memory: 250.422 MB.
+INFO: [HLS 200-10] Analyzing design file './mmult.cpp' ... 
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 0.15 seconds. CPU system time: 0.12 seconds. Elapsed time: 0.26 seconds; current allocated memory: 251.945 MB.
+INFO: [HLS 200-777] Using interface defaults for 'Vivado' flow target.
+INFO: [HLS 214-284] Auto array partition mode is set into default.
+INFO: [HLS 214-291] Loop 'systolic2' is marked as complete unroll implied by the pipeline pragma (./mmult.cpp:154:9)
+INFO: [HLS 214-291] Loop 'systolic3' is marked as complete unroll implied by the pipeline pragma (./mmult.cpp:156:13)
+INFO: [HLS 214-186] Unrolling loop 'systolic2' (./mmult.cpp:154:9) in function 'mmult' completely with a factor of 16 (./mmult.cpp:61:0)
+INFO: [HLS 214-186] Unrolling loop 'systolic3' (./mmult.cpp:156:13) in function 'mmult' completely with a factor of 16 (./mmult.cpp:61:0)
+INFO: [HLS 214-248] Applying array_partition to 'localA': Complete partitioning on dimension 1. (./mmult.cpp:92:9)
+INFO: [HLS 214-248] Applying array_partition to 'localB': Complete partitioning on dimension 2. (./mmult.cpp:95:6)
+INFO: [HLS 214-248] Applying array_partition to 'localC': Complete partitioning on dimension 1. Complete partitioning on dimension 2. (./mmult.cpp:98:6)
+INFO: [HLS 214-241] Aggregating fifo (hls::stream) variable 'work_id_out_stream' with compact=bit mode in 32-bits (./mmult.cpp:61:0)
+INFO: [HLS 214-270] Starting automatic array partition analysis...
+INFO: [HLS 214-115] Multiple burst reads of length 16 and bit width 512 has been inferred on bundle 'systolic'. These burst requests might be further partitioned into multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings. (./mmult.cpp:104:5)
+INFO: [HLS 214-115] Multiple burst reads of length 16 and bit width 512 has been inferred on bundle 'systolic'. These burst requests might be further partitioned into multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings. (./mmult.cpp:108:5)
+INFO: [HLS 214-115] Multiple burst writes of length 16 and bit width 512 has been inferred on bundle 'systolic'. These burst requests might be further partitioned into multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings. (./mmult.cpp:176:2)
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 10.07 seconds. CPU system time: 0.24 seconds. Elapsed time: 10.33 seconds; current allocated memory: 261.898 MB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 261.898 MB.
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 2.11 seconds. CPU system time: 0.1 seconds. Elapsed time: 2.22 seconds; current allocated memory: 281.395 MB.
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 2.4 seconds. CPU system time: 0 seconds. Elapsed time: 2.42 seconds; current allocated memory: 285.113 MB.
+INFO: [XFORM 203-510] Pipelining loop 'Loop-2' in function 'mmult' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'Loop-3' in function 'mmult' automatically.
+INFO: [XFORM 203-510] Pipelining loop 'Loop-5' in function 'mmult' automatically.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (./mmult.cpp:150:14) in function 'mmult'... converting 1025 basic blocks.
+INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 4.67 seconds. CPU system time: 0.01 seconds. Elapsed time: 4.68 seconds; current allocated memory: 337.375 MB.
+INFO: [HLS 200-472] Inferring partial write operation for 'localB' 
+INFO: [HLS 200-472] Inferring partial write operation for 'localB.1' 
+INFO: [HLS 200-472] Inferring partial write operation for 'localB.2' 
+INFO: [HLS 200-472] Inferring partial write operation for 'localB.3' 
+INFO: [HLS 200-472] Inferring partial write operation for 'localB.4' 
+INFO: [HLS 200-472] Inferring partial write operation for 'localB.5' 
+INFO: [HLS 200-472] Inferring partial write operation for 'localB.6' 
+INFO: [HLS 200-472] Inferring partial write operation for 'localB.7' 
+INFO: [HLS 200-472] Inferring partial write operation for 'localB.8' 
+INFO: [HLS 200-472] Inferring partial write operation for 'localB.9' 
+INFO: [HLS 200-472] Inferring partial write operation for 'localB.10' 
+INFO: [HLS 200-472] Inferring partial write operation for 'localB.11' 
+INFO: [HLS 200-472] Inferring partial write operation for 'localB.12' 
+INFO: [HLS 200-472] Inferring partial write operation for 'localB.13' 
+INFO: [HLS 200-472] Inferring partial write operation for 'localB.14' 
+INFO: [HLS 200-472] Inferring partial write operation for 'localB.15' 
+INFO: [HLS 200-472] Inferring partial write operation for 'localA' 
+INFO: [HLS 200-472] Inferring partial write operation for 'localA.1' 
+INFO: [HLS 200-472] Inferring partial write operation for 'localA.2' 
+INFO: [HLS 200-472] Inferring partial write operation for 'localA.3' 
+INFO: [HLS 200-472] Inferring partial write operation for 'localA.4' 
+INFO: [HLS 200-472] Inferring partial write operation for 'localA.5' 
+INFO: [HLS 200-472] Inferring partial write operation for 'localA.6' 
+INFO: [HLS 200-472] Inferring partial write operation for 'localA.7' 
+INFO: [HLS 200-472] Inferring partial write operation for 'localA.8' 
+INFO: [HLS 200-472] Inferring partial write operation for 'localA.9' 
+INFO: [HLS 200-472] Inferring partial write operation for 'localA.10' 
+INFO: [HLS 200-472] Inferring partial write operation for 'localA.11' 
+INFO: [HLS 200-472] Inferring partial write operation for 'localA.12' 
+INFO: [HLS 200-472] Inferring partial write operation for 'localA.13' 
+INFO: [HLS 200-472] Inferring partial write operation for 'localA.14' 
+INFO: [HLS 200-472] Inferring partial write operation for 'localA.15' 
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 0.35 seconds. CPU system time: 0 seconds. Elapsed time: 0.35 seconds; current allocated memory: 362.426 MB.
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'mmult' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'mmult_Pipeline_1' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'Loop 1'.
+INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 1, Depth = 3, loop 'Loop 1'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.57 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.59 seconds; current allocated memory: 362.426 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.07 seconds. CPU system time: 0 seconds. Elapsed time: 0.06 seconds; current allocated memory: 362.426 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'mmult_Pipeline_2' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'Loop 1'.
+INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 1, Depth = 3, loop 'Loop 1'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.12 seconds. CPU system time: 0 seconds. Elapsed time: 0.13 seconds; current allocated memory: 362.426 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.07 seconds. CPU system time: 0 seconds. Elapsed time: 0.06 seconds; current allocated memory: 362.426 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'mmult_Pipeline_systolic1' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'systolic1'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 5, loop 'systolic1'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 1.59 seconds. CPU system time: 0.02 seconds. Elapsed time: 1.61 seconds; current allocated memory: 363.688 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 1.64 seconds. CPU system time: 0.01 seconds. Elapsed time: 1.65 seconds; current allocated memory: 363.688 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'mmult_Pipeline_4' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'Loop 1'.
+INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 1, Depth = 2, loop 'Loop 1'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 2.87 seconds. CPU system time: 0.01 seconds. Elapsed time: 2.87 seconds; current allocated memory: 363.688 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.04 seconds. CPU system time: 0 seconds. Elapsed time: 0.04 seconds; current allocated memory: 363.688 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'mmult' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.19 seconds. CPU system time: 0 seconds. Elapsed time: 0.2 seconds; current allocated memory: 363.688 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 1.04 seconds. CPU system time: 0 seconds. Elapsed time: 1.04 seconds; current allocated memory: 363.688 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'mmult_Pipeline_1' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'mmult_Pipeline_1' pipeline 'Loop 1' pipeline type 'loop pipeline'
+WARNING: [RTGEN 206-101] Setting dangling out port 'mmult_Pipeline_1/m_axi_systolic_ARVALID' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'mmult_Pipeline_1/m_axi_systolic_ARADDR' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'mmult_Pipeline_1/m_axi_systolic_ARID' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'mmult_Pipeline_1/m_axi_systolic_ARLEN' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'mmult_Pipeline_1/m_axi_systolic_ARSIZE' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'mmult_Pipeline_1/m_axi_systolic_ARBURST' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'mmult_Pipeline_1/m_axi_systolic_ARLOCK' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'mmult_Pipeline_1/m_axi_systolic_ARCACHE' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'mmult_Pipeline_1/m_axi_systolic_ARPROT' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'mmult_Pipeline_1/m_axi_systolic_ARQOS' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'mmult_Pipeline_1/m_axi_systolic_ARREGION' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'mmult_Pipeline_1/m_axi_systolic_ARUSER' to 0.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'mmult_Pipeline_1'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 2.01 seconds. CPU system time: 0.01 seconds. Elapsed time: 2.04 seconds; current allocated memory: 363.688 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'mmult_Pipeline_2' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'mmult_Pipeline_2' pipeline 'Loop 1' pipeline type 'loop pipeline'
+WARNING: [RTGEN 206-101] Setting dangling out port 'mmult_Pipeline_2/m_axi_systolic_ARVALID' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'mmult_Pipeline_2/m_axi_systolic_ARADDR' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'mmult_Pipeline_2/m_axi_systolic_ARID' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'mmult_Pipeline_2/m_axi_systolic_ARLEN' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'mmult_Pipeline_2/m_axi_systolic_ARSIZE' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'mmult_Pipeline_2/m_axi_systolic_ARBURST' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'mmult_Pipeline_2/m_axi_systolic_ARLOCK' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'mmult_Pipeline_2/m_axi_systolic_ARCACHE' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'mmult_Pipeline_2/m_axi_systolic_ARPROT' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'mmult_Pipeline_2/m_axi_systolic_ARQOS' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'mmult_Pipeline_2/m_axi_systolic_ARREGION' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'mmult_Pipeline_2/m_axi_systolic_ARUSER' to 0.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'mmult_Pipeline_2'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.13 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.14 seconds; current allocated memory: 364.965 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'mmult_Pipeline_systolic1' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'mmult_Pipeline_systolic1' pipeline 'systolic1' pipeline type 'loop pipeline'

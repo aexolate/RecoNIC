@@ -138,6 +138,8 @@ class testcaseClass:
       if(item == 'top_module'):
         top_module = config_dict[item]
 
+    logger.info(f'ADDINFO: top module: {top_module}')
+
     if(top_module == 'cl_tb_top'):
       # Simulation for Compute Logic
       # Get cl_init_mem file
@@ -299,7 +301,27 @@ class testcaseClass:
     logger.info(f'Simulating {top_module} with the {sim_tool} simulator')
     cur_dir = os.getcwd()
     os.chdir(sim_path)
-    os.system(f'./simulate.sh -top {top_module} -g {gui} -t {tc_name} -s {sim_tool}')
+
+    # Construct the command string
+
+    cmd = f'./simulate.sh -top {top_module} -g {gui} -t {tc_name} -s {sim_tool}'
+
+    if idx_sb_pcisocket != -1:
+        cmd += f' -sb_pcisocket {sys.argv[idx_sb_pcisocket + 1]}'
+    if idx_sb_shmpath != -1:
+        cmd += f' -sb_shmpath {sys.argv[idx_sb_shmpath + 1]}'
+    if idx_sb_syncperiod != -1:
+        cmd += f' -sb_syncperiod {sys.argv[idx_sb_syncperiod + 1]}'
+    if idx_sb_pcilat != -1:
+        cmd += f' -sb_pcilat {sys.argv[idx_sb_pcilat + 1]}'
+    if idx_sb_name != -1:
+        cmd += f' -sb_name {sys.argv[idx_sb_name + 1]}'
+    if idx_sb_side != -1:
+        cmd += f' -sb_side {sys.argv[idx_sb_side + 1]}'
+
+    # Execute the command
+    os.system(cmd)
+
     os.chdir(cur_dir)
     logger.info(f'Finished simulation for {tc_name}')
 
@@ -403,6 +425,18 @@ if __name__ == "__main__":
   idx_reg       = find_elem_in_lst('regression', sys.argv)
   idx_simtool   = find_elem_in_lst('-questasim', sys.argv)
   idx_gui       = find_elem_in_lst('-gui', sys.argv)
+
+  idx_sb_pcisocket       = find_elem_in_lst('-sb_pcisocket', sys.argv)
+  idx_sb_shmpath       = find_elem_in_lst('-sb_shmpath', sys.argv)
+  idx_sb_syncperiod       = find_elem_in_lst('-sb_syncperiod', sys.argv)
+  idx_sb_pcilat       = find_elem_in_lst('-sb_pcilat', sys.argv)
+  idx_sb_name       = find_elem_in_lst('-sb_name', sys.argv)
+
+  # server(0) or client(1)
+  idx_sb_side      = find_elem_in_lst('-sb_side', sys.argv)
+
+
+
 
   is_debug = 0
 

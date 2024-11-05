@@ -99,6 +99,7 @@ xvlog $xvlog_opts -sv -d DEBUG -L axi_bram_ctrl_v4_1_6 -L xpm -work reco \
 "../src/rn_tb_top.sv" \
 "../src/cl_tb_top.sv" \
 "../src/rn_tb_2rdma_top.sv" \
+"../src/rn_tb_2rdma_top_remote.sv" \
 "../src/axi_3to1_interconnect_to_dev_mem.sv" \
 "../src/axi_5to2_interconnect_to_sys_mem.sv" \
 

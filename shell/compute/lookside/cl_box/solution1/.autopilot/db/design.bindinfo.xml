@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BindInfo>
+	<BindNode BINDTYPE="op" DISPLAY="bind_op icmp" ID="" IMPL="auto" LATENCY="0" OPTYPE="icmp" PRAGMA="" RTLNAME="exitcond2_fu_50_p2" SOURCE="" VARIABLE="exitcond2" MODULE="cl_box_Pipeline_1" LOOP="Loop 1" BUNDLEDNAME="" DSP="0" BRAM="0" URAM="0"/>
+	<BindNode BINDTYPE="op" DISPLAY="bind_op add" ID="" IMPL="fabric" LATENCY="0" OPTYPE="add" PRAGMA="" RTLNAME="empty_11_fu_56_p2" SOURCE="" VARIABLE="empty_11" MODULE="cl_box_Pipeline_1" LOOP="Loop 1" BUNDLEDNAME="" DSP="0" BRAM="0" URAM="0"/>
+	<BindNode BINDTYPE="op" DISPLAY="bind_op icmp" ID="" IMPL="auto" LATENCY="0" OPTYPE="icmp" PRAGMA="" RTLNAME="icmp_ln22_fu_70_p2" SOURCE="./cl_box.cpp:22" VARIABLE="icmp_ln22" MODULE="cl_box_Pipeline_VITIS_LOOP_22_1" LOOP="VITIS_LOOP_22_1" BUNDLEDNAME="" DSP="0" BRAM="0" URAM="0"/>
+	<BindNode BINDTYPE="op" DISPLAY="bind_op add" ID="" IMPL="fabric" LATENCY="0" OPTYPE="add" PRAGMA="" RTLNAME="cmd_recved_2_fu_76_p2" SOURCE="./cl_box.cpp:24" VARIABLE="cmd_recved_2" MODULE="cl_box_Pipeline_VITIS_LOOP_22_1" LOOP="VITIS_LOOP_22_1" BUNDLEDNAME="" DSP="0" BRAM="0" URAM="0"/>
+	<BindNode BINDTYPE="storage" DISPLAY="bind_storage ram_s2p" ID="" IMPL="auto" LATENCY="1" OPTYPE="ram_s2p" PRAGMA="" RTLNAME="cmd_array_U" SOURCE="./cl_box.cpp:15" VARIABLE="cmd_array" MODULE="cl_box" LOOP="" BUNDLEDNAME="" DSP="0" BRAM="0" URAM="0"/>
+	<BindNode BINDTYPE="op" DISPLAY="bind_op add" ID="" IMPL="fabric" LATENCY="0" OPTYPE="add" PRAGMA="" RTLNAME="add_ln22_fu_197_p2" SOURCE="./cl_box.cpp:22" VARIABLE="add_ln22" MODULE="cl_box" LOOP="" BUNDLEDNAME="" DSP="0" BRAM="0" URAM="0"/>
+</BindInfo>

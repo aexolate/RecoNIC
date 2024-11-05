@@ -1,0 +1,18 @@
+<xilinx:hls_fe_msgs>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="./cl_box.cpp:41:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaContext="directive" ARG_PragmaFunction="cl_box" ARG_PragmaIsValid="1" ARG_PragmaOptions="name=cl_box" ARG_PragmaType="top" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="./cl_box.cpp:46:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="cl_box" ARG_PragmaIsValid="1" ARG_PragmaOptions="mode=ap_ctrl_hs port=return" ARG_PragmaType="interface" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_VERBOSE_DUMP" msg_id="207-5471" msg_severity="WARNING" msg_loc="./cl_box.cpp:48:9" msg_body="HLS pragma dump">
+        <args ARG_PragmaFunction="cl_box" ARG_PragmaIsValid="1" ARG_PragmaOptions="recursive" ARG_PragmaType="inline" ClangWarningOption="dump-hls-pragmas"/>
+    </msg>
+    <msg msg_groups="PRAGMA_INLINE" msg_id="214-178" msg_severity="INFO" msg_loc="./cl_box.cpp:40:0" msg_body="Inlining function 'parse_ctl_cmd(hls::stream&lt;unsigned int, 0&gt;&amp;, int&amp;, int&amp;, int&amp;, int&amp;, int&amp;, int&amp;, int&amp;)' into 'cl_box(hls::stream&lt;unsigned int, 0&gt;&amp;, int&amp;, int&amp;, int&amp;, int&amp;, int&amp;, int&amp;, int&amp;)'">
+        <args Callee="parse_ctl_cmd(hls::stream&lt;unsigned int, 0&gt;&amp;, int&amp;, int&amp;, int&amp;, int&amp;, int&amp;, int&amp;, int&amp;)" Caller="cl_box(hls::stream&lt;unsigned int, 0&gt;&amp;, int&amp;, int&amp;, int&amp;, int&amp;, int&amp;, int&amp;, int&amp;)"/>
+    </msg>
+    <msg msg_groups="PRAGMA_AGGREGATE" msg_id="214-241" msg_severity="INFO" msg_loc="./cl_box.cpp:40:0" msg_body="Aggregating fifo (hls::stream) variable 'ctl_cmd_stream' with compact=bit mode in 32-bits">
+        <args AggregateTypeName="compact=bit" Bitwidth="32" HwTyName="fifo (hls::stream)" Name="ctl_cmd_stream"/>
+    </msg>
+</xilinx:hls_fe_msgs>
+
